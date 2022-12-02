@@ -25,6 +25,7 @@ const Hero = (props: Props) => {
           backgroundColor: 'black',
           backgroundPosition: 'center',
           backgroundSize: 'cover',
+          backgroundAttachment: 'fixed',
           height: '600px',
           width: '100%',
           display: 'flex',

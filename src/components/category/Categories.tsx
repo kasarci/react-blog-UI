@@ -20,7 +20,7 @@ const StyledTypography = styled(Typography)({
 
 function Categories({}: Props) {
   return (
-    <Box>
+    <Box marginBottom={10}>
       <Typography align='center' variant='h3' paddingTop={10} sx={{ fontWeight: 350 }}>
         Categories
       </Typography>
