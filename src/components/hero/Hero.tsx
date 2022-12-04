@@ -32,7 +32,7 @@ const Hero = (props: Props) => {
           justifyContent: 'center'
         }}>
         <Box sx={{
-          width: {xs:"90%", sm:"70%", md:"55%", lg:"40%"},
+          width: {xs:"90%", sm:"80%", md:"70%", lg:"50%"},
           display: 'flex',
           justifyContent: 'center',
           padding: {xs:5, sm:10, md:15, lg:20},
@@ -41,9 +41,14 @@ const Hero = (props: Props) => {
         }}>
           <Box sx={{ 
             background:'white', 
-            opacity:'0.8'}}
+            opacity:'0.8',
+            display:'flex',
+            flexDirection:'column',
+            alignItems: 'center',
+            justifyItems:'center'  
+          }}
           >  
-            <Typography variant={'h3'} color='black' fontWeight={500} align='center' pt={8}>
+            <Typography variant={'h3'} color='black' fontWeight={500} align='center' pt={8} sx={{}}>
               Welcome to my Personal Blog!
             </Typography>
 
