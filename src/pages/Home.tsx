@@ -1,7 +1,7 @@
 import { Box, Container } from '@mui/material'
-import Categories from '../category/Categories'
-import Hero from '../hero/Hero'
-import Recents from '../recents/Recents'
+import Categories from '../components/category/Categories'
+import Hero from '../components/hero/Hero'
+import Recents from '../components/recents/Recents'
 
 type Props = {}
 

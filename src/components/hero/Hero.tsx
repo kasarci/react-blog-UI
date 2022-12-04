@@ -7,7 +7,6 @@ type Props = {}
 const Hero = (props: Props) => {
   return (
     <Box>
-      
       <Box paddingTop={5} paddingBottom={5}>
         <Typography align='center' variant='h3' sx={{ fontWeight: 900 }}>
           Personal Blog

@@ -1,16 +1,20 @@
-import Categories from "./components/category/Categories";
 import Footer from "./components/footer/Footer";
-import Hero from "./components/hero/Hero";
-import Home from "./components/home/Home";
 import Navbar from "./components/navbar/Navbar";
-import Recents from "./components/recents/Recents";
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import Home from "./pages/Home";
 
 function App() {
   return (
     <div>
-      <Navbar />
-      <Home />
-      <Footer />
+      <Router>
+        <Navbar />
+          
+        <Routes>
+          <Route path="/" element={ <Home /> } />
+        </Routes>
+
+        <Footer />
+      </Router>
     </div>
   );
 }
