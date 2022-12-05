@@ -1,4 +1,4 @@
-import {AppBar, Box, InputBase, Menu, MenuItem, styled, Toolbar, Typography} from '@mui/material';
+import {AppBar, Box, InputBase, Link, Menu, MenuItem, styled, Toolbar, Typography} from '@mui/material';
 import {GitHub, LinkedIn, Menu as MenuIcon} from '@mui/icons-material';
 import { useState } from 'react';
 
@@ -48,7 +48,10 @@ function Navbar({}: Props) {
         <MenuBox sx={{display: {xs: 'none', sm:'none', md:'flex', justifyItems: 'center', alignItems:'center'}}}>
           {
             MenuItems.map((item : MenuItem) => 
-              <Typography sx={{ cursor: 'pointer', fontSize: '14px' }}>{item.Name}</Typography>
+            <Link href={item.Link} underline="none" variant='body1' color='inherit'>
+              {item.Name}
+            </Link>
+
             )
           }
           <SearchBox>
