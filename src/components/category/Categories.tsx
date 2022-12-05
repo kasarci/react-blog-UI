@@ -10,6 +10,11 @@ const StyledBox = styled(Box)({
   justifyContent: 'center',
   cursor: 'pointer',
   background: '#1f354a',
+  transition: "background 0.5s",
+  "&:hover": {
+  backgroundColor: "#3c668f",
+  color: "#fff"
+  }
 }) as typeof Box
 
 const StyledTypography = styled(Typography)({
