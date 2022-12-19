@@ -1,12 +1,15 @@
+import { ICategory } from './ICategory';
 import {IComment} from './IComment'
+import { ITag } from './ITag';
 
 export interface IPost {
-  post: string,
-  title: string,
-  writerName: string,
-  dateTime: string,
-  categories: string[],
-  tags?: string[],
-  likes: number,
-  comments: IComment[]
+  id: string;
+  createdAt: Date;
+  writerId: string;
+  title: string;
+  content: string;
+  categories: ICategory[];
+  tags: ITag[];
+  comments: IComment[];
+  likes: number;
 }
