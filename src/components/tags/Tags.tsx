@@ -13,7 +13,7 @@ const Tags = (props: Props) => {
         {props.tags?.map((tag:ITag) => {
           return (
             <Box sx={{backgroundColor:'#f2f2f2'}}>
-              <Typography variant='body2' padding='0.5rem' >{tag.name}</Typography>
+              <Typography variant='body2' padding='0.5rem' >#{tag.name}</Typography>
             </Box>
           )
         })}

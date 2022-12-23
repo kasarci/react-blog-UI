@@ -11,7 +11,7 @@ const Home = (props: Props) => {
       <Hero />
       <Container>
         <Categories />
-        <hr />
+          <hr />
         <Recents />
       </Container>
     </Box>

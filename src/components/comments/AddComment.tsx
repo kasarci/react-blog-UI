@@ -1,6 +1,5 @@
 import Box from '@mui/joy/Box';
 import FormControl from '@mui/joy/FormControl';
-import FormLabel from '@mui/joy/FormLabel';
 import Textarea from '@mui/joy/Textarea';
 import IconButton from '@mui/joy/IconButton';
 import Menu from '@mui/joy/Menu';
@@ -10,15 +9,40 @@ import FormatBold from '@mui/icons-material/FormatBold';
 import FormatItalic from '@mui/icons-material/FormatItalic';
 import KeyboardArrowDown from '@mui/icons-material/KeyboardArrowDown';
 import Check from '@mui/icons-material/Check';
-import { useState } from 'react';
+import { SyntheticEvent, useState } from 'react';
 import { Button, Typography } from '@mui/material';
+import axios from 'axios';
 
 type Props = {}
 
 const AddComment = (props: Props) => {
+  const [email, setEmail] = useState<string>('');
+  const [comment, setComment] = useState<string>('');
+  const [submitting, setSubmitting] = useState<boolean>(false);
   const [italic, setItalic] = useState<boolean>(false);
   const [fontWeight, setFontWeight] = useState<string>('normal');
   const [anchorEl, setAnchorEl] = useState<HTMLAnchorElement | null>();
+
+  const handleSubmit = (event: SyntheticEvent) => {
+    event.preventDefault();
+    setSubmitting(true);
+
+    axios
+      .post('/api/comments', {
+        email: email,
+        comment: comment,
+      })
+      .then((res) => {
+        // handle successful submission
+        setSubmitting(false);
+      })
+      .catch((err) => {
+        // handle submission error
+        console.log(err.message);
+        setSubmitting(false);
+      });
+  };
+  
 
   return (
     <Box fontFamily='roboto'>
@@ -85,7 +109,7 @@ const AddComment = (props: Props) => {
             >
               <FormatItalic />
             </IconButton>
-            <Button variant='contained' sx={{ ml: 'auto' }}>Send</Button>
+            <Button variant='contained' sx={{ ml: 'auto' }} onClick={handleSubmit}>Send</Button>
           </Box>
         }
         sx={{

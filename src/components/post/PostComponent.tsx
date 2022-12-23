@@ -12,7 +12,7 @@ const PostComponent = (props: Props) => {
     <Box>
       <Typography variant='h3' align='center'>{props.post?.title}</Typography>
       <Box display='flex' alignItems='center' justifyContent='space-between' width={{xs:'100%', sm:'90%', md:'80%', lg:'60%', xl:'40%'}} margin='1rem auto'>
-        <Typography variant='body2' align='center' width='100%'>{props.post.createdAt.toUTCString()}</Typography>
+        <Typography variant='body2' align='center' width='100%'>{new Date(props.post.createdAt).toLocaleDateString()}</Typography>
         <Typography variant='body2' align='center' width='100%'>{props.post.writerId}</Typography>
       </Box>
       <Box maxWidth='100%' margin='2rem auto'></Box>
