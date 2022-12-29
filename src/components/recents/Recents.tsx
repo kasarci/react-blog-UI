@@ -31,9 +31,11 @@ const Recents = (props: Props) => {
               <Grid item xs={12} sm={6} md={4} display='flex' justifyContent='center' alignItems={'center'} >
                 <MyCard 
                   title={card.title} 
-                  content={card.content} 
+                  content={card.content.substring(0,300).concat('...')} 
                   withButton={true} 
-                  buttonText='Read more...' />
+                  buttonText='Read more'
+                  buttonOnClick={() => {window.open(`http://localhost:3000/blog/${card.id}`, '_self');}}
+                   />
               </Grid>
             ))
           )

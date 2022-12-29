@@ -30,7 +30,7 @@ const BlogComponent = (props: Props) => {
             <Favorite color='primary'  sx={{padding:'0.5rem 0 0.5rem 0.5rem'}}/>
             <Typography variant='body1' sx={{padding:'0.5rem 0 0 0'}}>{props.post.likes}</Typography>
             <Divider orientation='horizontal' variant='middle'/>
-            <Tags tags={props.post.tags}/>
+            {props.post.tags && <Tags tags={props.post.tags}/>}
           </Box>
 
         </CardContent>

@@ -8,6 +8,7 @@ type Props = {
 }
 
 const PostComponent = (props: Props) => {
+  console.log(props.post.comments)
   return (
     <Box>
       <Typography variant='h3' align='center'>{props.post?.title}</Typography>
@@ -21,7 +22,6 @@ const PostComponent = (props: Props) => {
       </Typography>
       
       <hr/>
-      
       <Comments comments={props.post.comments} />
     </Box>
   )

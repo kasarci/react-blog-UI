@@ -12,9 +12,10 @@ const Tags = (props: Props) => {
       <Box display='flex' flexDirection='row' flexWrap='wrap' gap='0.5rem'>
         {props.tags?.map((tag:ITag) => {
           return (
+            tag ?
             <Box sx={{backgroundColor:'#f2f2f2'}}>
               <Typography variant='body2' padding='0.5rem' >#{tag.name}</Typography>
-            </Box>
+            </Box> : null
           )
         })}
       </Box>

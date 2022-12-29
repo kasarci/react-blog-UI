@@ -64,7 +64,7 @@ const Blog: React.FC = () => {
           </Container>
 
           <Box display='flex' width='80%' alignItems='flex-start' margin='1rem auto'>
-            <Tags tags={post.tags}/>
+            { post.tags && <Tags tags={post.tags}/>}
           </Box>
         
 
