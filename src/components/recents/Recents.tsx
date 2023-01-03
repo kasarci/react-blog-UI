@@ -27,7 +27,7 @@ const Recents = (props: Props) => {
           loading ? (
             <CircularProgress />
           ) : (
-            posts.map(card => (
+            posts.slice(0,3).map(card => (
               <Grid item xs={12} sm={6} md={4} display='flex' justifyContent='center' alignItems={'center'} >
                 <MyCard 
                   title={card.title} 

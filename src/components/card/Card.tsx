@@ -11,21 +11,23 @@ interface CardProps {
 const MyCard = (props: CardProps) => {
   return (
     <Box>
-      <Card sx={{ minWidth: 275, maxWidth: 400, minHeight:275, maxHeight:400}}>
-        <CardContent>
-          <Typography variant="h5" component="div" align='center'paddingTop='10%'>
-            {props.title} 
-          </Typography>
-          <Typography variant="body2" align='center'paddingTop={5}>
-            {props.content}
-          </Typography>
-        </CardContent>
-        {
-          props.withButton && 
+      <Card sx={{ minWidth: {xs:450, sm:250, md:275, lg:350}, maxWidth:{xs:450, sm:250, md:275, lg:350}, minHeight:375, maxHeight:375, display:'flex', flexDirection:'column', 
+                  justifyContent:'space-between', alignItems:'center'}}>
+        
+          <CardContent>
+            <Typography variant="h5" component="div" align='center'paddingTop='10%'>
+              {props.title} 
+            </Typography>
+            <Typography variant="body2" align='center'paddingTop={5}>
+              {props.content}
+            </Typography>
+          </CardContent>
+          {
+            props.withButton && 
             <CardActions>
               <Button size="small" onClick={props.buttonOnClick} sx={{width:'100%'}}>{props.buttonText}</Button>
             </CardActions> 
-        }
+          }
       </Card>
     </Box>
   )
