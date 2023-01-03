@@ -7,6 +7,7 @@ import NotFound from "./pages/NotFound";
 import Blogs from "./pages/Blogs";
 import ContactMe from "./pages/ContactMe";
 import Blog from "./pages/Blog";
+import Category from "./pages/Category";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path="/blogs" element={ <Blogs /> } />
           <Route path="/blog" element={ <Blogs /> } />
           <Route path="/blog/:id" element={ <Blog /> } />
+          <Route path="/category/:categoryName" element={ <Category/> } />
           <Route path="/post" element={ <Post /> } />
           <Route path="/contact" element={ <ContactMe /> } />
           <Route path="*" element={ <NotFound /> } />

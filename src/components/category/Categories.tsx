@@ -3,7 +3,7 @@ import { Box, Stack, styled, Typography } from '@mui/material'
 import { useEffect, useState } from 'react'
 import { CATEGORY_GET_ALL } from '../../api/api'
 import { ICategory } from '../../interfaces/ICategory'
-import Category from './Category'
+import CategoryComponent from './CategoryComponent'
 
 type Props = {}
 
@@ -29,7 +29,7 @@ function Categories({}: Props) {
       </Typography>
       <Stack direction={{xs:'column', sm:'row'}}  spacing={{xs:1, sm:2, md:4}} marginTop={10} alignItems='center' >
         {categories.slice(0,3).map((category : ICategory) => {
-            return <Category category={category} />
+            return <CategoryComponent category={category} />
         })}
       </Stack>
     </Box>

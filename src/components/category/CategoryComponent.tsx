@@ -1,10 +1,10 @@
-import { Box, styled, Typography } from '@mui/material'
+import { Box, styled, Typography, Link } from '@mui/material'
 import React from 'react'
 import { ICategory } from '../../interfaces/ICategory'
 
 type Props = { category: ICategory }
 
-const Category = (props: Props) => {
+const CategoryComponent = (props: Props) => {
 
   const StyledBox = styled(Box)({
     height: '100%',
@@ -12,6 +12,7 @@ const Category = (props: Props) => {
     display: 'flex',
     justifyContent: 'center',
     cursor: 'pointer',
+    
     background: '#1f354a',
     transition: "background 0.5s",
     "&:hover": {
@@ -26,8 +27,9 @@ const Category = (props: Props) => {
     opacity: '0.7'
   }) as typeof Typography
 
+
   return (
-    <StyledBox>
+    <StyledBox component={Link} href={'/category/'.concat(props.category.name)} underline='none' >
       <StyledTypography>
         {props.category.name}
       </StyledTypography>
@@ -35,4 +37,4 @@ const Category = (props: Props) => {
   )
 }
 
-export default Category
+export default CategoryComponent
