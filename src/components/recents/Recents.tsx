@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { CircularProgress, Box, Grid, Typography } from '@mui/material';
 import MyCard from '../card/Card';
-import { POST_GET_ALL } from '../../api/api';
+import { POST_GET_ALL, POST_GET_RECENTS } from '../../api/api';
 import { IPost } from '../../interfaces/IPost';
 
 type Props = {};
@@ -12,7 +12,7 @@ const Recents = (props: Props) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch(POST_GET_ALL)
+    fetch(POST_GET_RECENTS.concat('3'))
       .then(response => response.json())
       .then(data => setPosts(data))
       .catch(error => console.error(error))
