@@ -79,14 +79,3 @@ const Blogs = (props: Props) => {
 }
 
 export default Blogs
-
-
-/**
- * 
- * <PaginationItem
-                    component={Link}
-                    to={`/blogs${item.page === 1 ? '' : `/page=${item.page}`}`}
-                    
-                  />
- * 
- */

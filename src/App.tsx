@@ -17,13 +17,19 @@ function App() {
           
         <Routes>
           <Route path="/" element={ <Home /> } />
+
           <Route path="/blogs/" element={ <Blogs /> } />
           <Route path="/blogs/page/:page" element={ <Blogs /> } />
           <Route path="/blog" element={ <Blogs /> } />
           <Route path="/blog/:id" element={ <Blog /> } />
-          <Route path="/category/:categoryName" element={ <Category/> } />
+          
+          <Route path="/category/:categoryName/" element={ <Category/> } />
+          <Route path="/category/:categoryName/page/:page" element={ <Category/> } />
+          
           <Route path="/post" element={ <Post /> } />
+          
           <Route path="/contact" element={ <ContactMe /> } />
+          
           <Route path="*" element={ <NotFound /> } />
         </Routes>
 
