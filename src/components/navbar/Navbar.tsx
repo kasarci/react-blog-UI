@@ -90,7 +90,11 @@ function Navbar({}: Props) {
           <Box sx={{ width:'360px', height: '94vh'}}>
             {
               MenuItems.map((item : MenuItem) => 
-                <MenuItem sx={{ cursor: 'pointer', fontSize: '14px' }}>{item.Name}</MenuItem>
+                <MenuItem sx={{ cursor: 'pointer', fontSize: '14px' }}>
+                  <Link href={item.Link} underline="none" variant='body1' color='inherit'>
+                    {item.Name}   
+                  </Link>
+                </MenuItem>
               )
             }
           </Box>

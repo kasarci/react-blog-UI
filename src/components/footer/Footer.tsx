@@ -5,7 +5,7 @@ type Props = {}
 
 const Footer = (props: Props) => {
   return (
-    <Box sx={{background:'black', height:'150px', marginTop:'10rem'}}>
+    <Box sx={{position:'relative', background:'black', height:'150px', marginTop:'10rem', left:'0', bottom:'0', width:'100%'}}>
       <Stack direction={{xs:'row', md:'row'}} p={5}>
         <Box flex={1}>
           <Typography color='white' variant='body1' align='center'>
