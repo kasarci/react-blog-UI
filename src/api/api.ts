@@ -1,3 +1,5 @@
+import axios from "axios";
+
 const API_BASE_URL = 'https://localhost:7026';
 
 export const POST_GET_COUNT: string = `${API_BASE_URL}/Post/getCount`;
@@ -11,5 +13,14 @@ export const POST_GET_RECENTS : string = `${API_BASE_URL}/Post/getRecents/`;
 
 export const USER_ENDPOINT: string = `${API_BASE_URL}/users`;
 
+export const LOGIN: string = `${API_BASE_URL}/Auth/login`;
+
 export const CATEGORY_GET_ALL: string = `${API_BASE_URL}/Category/getAll`;
 export const CATEGORY_GET_BY_NAME: string = `${API_BASE_URL}/Category/getByName/`;
+
+export const setAuthToken = (token : string) => {
+    if (token) {
+        axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+    } else {
+        delete axios.defaults.headers.common["Authorization"];
+}}

@@ -9,6 +9,9 @@ import ContactMe from "./pages/ContactMe";
 import Blog from "./pages/Blog";
 import Category from "./pages/Category";
 import { Box } from "@mui/material";
+import Login from "./pages/Login";
+import Admin from "./pages/Admin";
+import { hasJWT } from "./components/routeGuard/RouteGuard";
 
 function App() {
   return (
@@ -31,6 +34,14 @@ function App() {
             <Route path="/post" element={ <Post /> } />
             
             <Route path="/contact" element={ <ContactMe /> } />
+
+            <Route path="/login" element={ <Login /> } />
+            
+            <Route path="/admin" element={ hasJWT() ? <Admin /> : <Login /> } />
+            
+            <Route path="/admin" element={ <Admin /> } />
+
+
             
             <Route path="*" element={ <NotFound /> } />
           </Routes>
