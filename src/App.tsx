@@ -11,14 +11,14 @@ import Category from "./pages/Category";
 import { Box } from "@mui/material";
 import Login from "./pages/Login";
 import Admin from "./pages/Admin";
-import { hasJWT } from "./components/routeGuard/RouteGuard";
+//import { hasValidJWT } from "./components/shared/RouteGuard";
+import PrivateRoute from "./components/routeGuard/PrivateRoute";
 
 function App() {
   return (
     <div>
       <Router>
         <Navbar />
-        
         <Box minHeight='calc(100vh - 470px)'> 
           <Routes>
             <Route path="/" element={ <Home /> } />
@@ -36,17 +36,15 @@ function App() {
             <Route path="/contact" element={ <ContactMe /> } />
 
             <Route path="/login" element={ <Login /> } />
-            
-            <Route path="/admin" element={ hasJWT() ? <Admin /> : <Login /> } />
-            
-            <Route path="/admin" element={ <Admin /> } />
-
-
+          
+            <Route
+              path="/Admin/*"
+              element={<PrivateRoute component={Admin} />}
+            />
             
             <Route path="*" element={ <NotFound /> } />
           </Routes>
         </Box>
-
         <Footer />
       </Router>
     </div>

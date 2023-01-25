@@ -1,42 +1,20 @@
-import { Box, Button, responsiveFontSizes, TextField, Typography } from '@mui/material'
-import axios, { AxiosError } from 'axios';
-import React, { useState } from 'react'
-import { LOGIN, setAuthToken } from '../api/api'
+import { Box, Button, TextField, Typography } from '@mui/material'
+import React, { useContext, useState } from 'react'
+import AuthContext from '../components/shared/Authcontext';
 import { ILoginResponse } from '../interfaces/ILoginResponse';
 
 type Props = {}
 
 
 const Login: React.FC = () => {
-	const [responseData, setResponseData] = useState<ILoginResponse | any>(null);
+	//const [responseData, setResponseData] = useState<ILoginResponse | any>(null);
 	const [email, setEmail] = useState<string>('');
 	const [password, setPassword] = useState<string>('');
 	const [errors, setErrors] = useState<string[] | undefined>(['']);
+	const {login}= useContext(AuthContext)
 
-	const handleSubmit = () => {
-		const loginPayload = {
-			email ,
-			password
-		}
-		setErrors([''])
-		axios.post<ILoginResponse>(LOGIN, loginPayload)
-			.then((response) => {
-				console.log('no error')
-				setErrors(['']);
-				const token = response.data.token;
-				const refreshToken = response.data.refreshToken;
-
-				localStorage.setItem('token', token);
-				localStorage.setItem('refreshToken', refreshToken);
-
-				setAuthToken(token);
-
-				window.location.href = '/admin'
-			})
-			.catch((err : AxiosError<ILoginResponse>)  => {
-				console.log('error line 42:' + err);
-				setErrors(err.response?.data.errors);
-			});
+	const handleSubmit = async () => {
+		await login({email,password});
 	}
 
 	return (

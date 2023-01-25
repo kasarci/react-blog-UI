@@ -14,6 +14,7 @@ export const POST_GET_RECENTS : string = `${API_BASE_URL}/Post/getRecents/`;
 export const USER_ENDPOINT: string = `${API_BASE_URL}/users`;
 
 export const LOGIN: string = `${API_BASE_URL}/Auth/login`;
+export const REFRESH: string = `${API_BASE_URL}/Auth/refreshToken`;
 
 export const CATEGORY_GET_ALL: string = `${API_BASE_URL}/Category/getAll`;
 export const CATEGORY_GET_BY_NAME: string = `${API_BASE_URL}/Category/getByName/`;
