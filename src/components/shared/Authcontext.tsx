@@ -4,15 +4,11 @@ import React, { ReactNode } from "react";
 import jwt_decode from "jwt-decode";
 import { ILoginResponse } from "../../interfaces/ILoginResponse";
 import { LOGIN, REFRESH, setAuthToken } from "../../api/api";
+import { ILoginPayload } from "./IAuthContext";
 
 interface Props {
 	children?: ReactNode
 	// any props that come into the component
-}
-
-interface ILoginPayload {
-	email: string,
-	password: string
 }
 
 const AuthContext: React.Context<any> = createContext(null);
@@ -36,7 +32,7 @@ export const AuthContextProvider = (props: Props) => {
 		return false;
 	});
 
-	const login = (loginPayload: ILoginPayload) => {
+	const login = async (loginPayload: ILoginPayload) => {
 		setErrors([''])
 		axios.post<ILoginResponse>(LOGIN, loginPayload)
 			.then((response) => {
@@ -70,7 +66,7 @@ export const AuthContextProvider = (props: Props) => {
 	};
 
 	return (
-		<AuthContext.Provider value={{ user, login, isLoggedIn }}>
+		<AuthContext.Provider value={{ user, login, isLoggedIn, errors }}>
 			{props.children}
 		</AuthContext.Provider>
 	);
