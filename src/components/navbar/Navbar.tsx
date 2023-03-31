@@ -1,6 +1,9 @@
-import {AppBar, Box, InputBase, Link, Menu, MenuItem, styled, Toolbar, Typography} from '@mui/material';
+import {AppBar, Box, Button, InputBase, Link, Menu, MenuItem, styled, Toolbar, Typography} from '@mui/material';
 import {GitHub, LinkedIn, Menu as MenuIcon} from '@mui/icons-material';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import AuthContext from '../shared/Authcontext';
+import { IAuthContext } from '../shared/IAuthContext';
+import { Navigate } from 'react-router-dom';
 
 
 interface Props {}
@@ -13,6 +16,7 @@ function Navbar({}: Props) {
   
   const SocialBox = styled(Box)({
     display: 'flex',
+    alignItems: 'center',
     gap: 10
   }) as typeof Box;
 
@@ -29,17 +33,33 @@ function Navbar({}: Props) {
     gap: 30
   }) as typeof Box;
 
+  const LogoutBox = styled(Box)({
+    display: 'flex',
+    gap: 30
+  }) as typeof Box;
+
   interface MenuItem {
     Name: string,
-    Link: string
+    Link: string,
+    PublicLink: boolean;
   }
   const MenuItems : MenuItem[] = [
-    {Name: 'Home', Link: '/'},
-    {Name: 'Blogs', Link: '/blogs'},
-    {Name: 'Contact Me', Link: '/contact'}
+    {Name: 'Home', Link: '/', PublicLink: true},
+    {Name: 'Blogs', Link: '/blogs', PublicLink: true},
+    {Name: 'Contact Me', Link: '/contact',  PublicLink: true},
+    {Name: 'Admin', Link: '/admin',  PublicLink: false }
   ]
 
   const [open, setOpen] = useState<boolean>(false);
+  const { isLoggedIn, logout } = useContext(AuthContext) as IAuthContext;
+
+  const handleLogout = async (e: React.FormEvent) => {
+    if(window.location.pathname === "/admin"){
+      console.log('redirecting to home.')
+      window.location.href = '/'
+    }    
+    await logout();
+	}
   
   return (
     <AppBar position='static' sx={{ background: 'black' }}>
@@ -47,10 +67,10 @@ function Navbar({}: Props) {
         
         <MenuBox sx={{display: {xs: 'none', sm:'none', md:'flex', justifyItems: 'center', alignItems:'center'}}}>
           {
-            MenuItems.map((item : MenuItem) => 
+            MenuItems.map((item : MenuItem) => isLoggedIn || item.PublicLink ? 
             <Link href={item.Link} underline="none" variant='body1' color='inherit'>
               {item.Name}
-            </Link>
+            </Link> : null
 
             )
           }
@@ -69,6 +89,7 @@ function Navbar({}: Props) {
           </SearchBox>
 
         <SocialBox >
+          { isLoggedIn ? <Button variant='text' color='inherit' onClick={handleLogout}>Logout</Button> : null}
           <LinkedIn />
           <GitHub />
         </SocialBox>

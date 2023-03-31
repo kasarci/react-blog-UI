@@ -2,7 +2,7 @@ export interface IAuthContext {
     errors: string[] | undefined;
     login: (payload: ILoginPayload) => void;
     logout: () => void;
-
+    isLoggedIn: boolean;
 }
 
 export interface ILoginPayload {
