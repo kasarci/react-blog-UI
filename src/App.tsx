@@ -13,6 +13,8 @@ import Login from "./pages/Login";
 import Admin from "./pages/Admin";
 //import { hasValidJWT } from "./components/shared/RouteGuard";
 import PrivateRoute from "./components/routeGuard/PrivateRoute";
+import CreatePost from "./pages/CreatePost";
+import ManagePosts from "./pages/ManagePosts";
 
 function App() {
   return (
@@ -40,6 +42,14 @@ function App() {
             <Route
               path="/Admin/*"
               element={<PrivateRoute component={Admin} />}
+            />
+            <Route
+              path="/createPost/*"
+              element={<PrivateRoute component={CreatePost} />}
+            />
+            <Route
+              path="/managePosts/*"
+              element={<PrivateRoute component={ManagePosts} />}
             />
             
             <Route path="*" element={ <NotFound /> } />

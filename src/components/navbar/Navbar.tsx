@@ -49,7 +49,7 @@ function Navbar({}: Props) {
 
   const AdminSubmenuItems: IMenuItem[] = [
     {Name: 'Create Post', Link: '/createPost',  PublicLink: false },
-    {Name: 'Manage Posts', Link: '/managePost',  PublicLink: false },
+    {Name: 'Manage Posts', Link: '/managePosts',  PublicLink: false },
   ]
 
   let navigate = useNavigate();
