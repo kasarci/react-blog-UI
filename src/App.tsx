@@ -16,7 +16,7 @@ import PrivateRoute from "./components/routeGuard/PrivateRoute";
 
 function App() {
   return (
-    <div>
+    <Box>
       <Router>
         <Navbar />
         <Box minHeight='calc(100vh - 470px)'> 
@@ -47,7 +47,7 @@ function App() {
         </Box>
         <Footer />
       </Router>
-    </div>
+    </Box>
   );
 }
 

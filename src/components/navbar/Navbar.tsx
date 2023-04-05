@@ -3,7 +3,9 @@ import {GitHub, LinkedIn, Menu as MenuIcon} from '@mui/icons-material';
 import { useContext, useState } from 'react';
 import AuthContext from '../shared/Authcontext';
 import { IAuthContext } from '../shared/IAuthContext';
-import { Navigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
+import NavbarButtonGroup from './NavbarButtonGroup';
+import IMenuItem from './IMenuItem';
 
 
 interface Props {}
@@ -38,18 +40,20 @@ function Navbar({}: Props) {
     gap: 30
   }) as typeof Box;
 
-  interface MenuItem {
-    Name: string,
-    Link: string,
-    PublicLink: boolean;
-  }
-  const MenuItems : MenuItem[] = [
+
+  const MenuItems : IMenuItem[] = [
     {Name: 'Home', Link: '/', PublicLink: true},
     {Name: 'Blogs', Link: '/blogs', PublicLink: true},
     {Name: 'Contact Me', Link: '/contact',  PublicLink: true},
-    {Name: 'Admin', Link: '/admin',  PublicLink: false }
   ]
 
+  const AdminSubmenuItems: IMenuItem[] = [
+    {Name: 'Create Post', Link: '/createPost',  PublicLink: false },
+    {Name: 'Manage Posts', Link: '/managePost',  PublicLink: false },
+  ]
+
+  let navigate = useNavigate();
+  
   const [open, setOpen] = useState<boolean>(false);
   const { isLoggedIn, logout } = useContext(AuthContext) as IAuthContext;
 
@@ -60,20 +64,24 @@ function Navbar({}: Props) {
     }    
     await logout();
 	}
+
+  const handleMenuItemClick = (link: string) => {
+    navigate(link)
+  }
   
   return (
-    <AppBar position='static' sx={{ background: 'black' }}>
+    <AppBar position='static' sx={{ background: 'black',zIndex: 2 }}>
       <StyledToolbar>
         
         <MenuBox sx={{display: {xs: 'none', sm:'none', md:'flex', justifyItems: 'center', alignItems:'center'}}}>
           {
-            MenuItems.map((item : MenuItem) => isLoggedIn || item.PublicLink ? 
-            <Link href={item.Link} underline="none" variant='body1' color='inherit'>
+            MenuItems.map((item : IMenuItem) => isLoggedIn || item.PublicLink ? 
+            <Button variant='text' color='inherit' onClick={() => {handleMenuItemClick(item.Link)}}>
               {item.Name}
-            </Link> : null
-
+            </Button> : null
             )
           }
+          {isLoggedIn ? <NavbarButtonGroup options={AdminSubmenuItems}/> : null}
           <SearchBox>
             <InputBase placeholder='Search...' sx={{color: 'white'}} />
           </SearchBox>
@@ -110,7 +118,7 @@ function Navbar({}: Props) {
         >
           <Box sx={{ width:'360px', height: '94vh'}}>
             {
-              MenuItems.map((item : MenuItem) => 
+              MenuItems.map((item : IMenuItem) => 
                 <MenuItem sx={{ cursor: 'pointer', fontSize: '14px' }}>
                   <Link href={item.Link} underline="none" variant='body1' color='inherit'>
                     {item.Name}   
