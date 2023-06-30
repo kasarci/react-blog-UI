@@ -11,15 +11,31 @@ interface Props {
 	// any props that come into the component
 }
 
+export interface IDecodedToken {
+	alg:      string;
+	typ:      string;
+	Id:       string;
+	username: string;
+	sub:      string;
+	email:    string;
+	jti:      string;
+	iat:      number;
+	role:     string;
+	nbf:      number;
+	exp:      number;
+
+}
+
 const AuthContext: React.Context<any> = createContext(null);
 
 export const AuthContextProvider = (props: Props) => {
 	//const navigate = useNavigate();
 	const [errors, setErrors] = useState<string[] | undefined>([""]);
-	const [user, setUser] = useState(() => {
+	const [user, setUser] = useState<IDecodedToken|null>(() => {
 		const token = localStorage.getItem("token");
 		if (token) {
-			return jwt_decode(token);
+			console.log("TOken: ", jwt_decode(token));
+			return jwt_decode<IDecodedToken>(token);
 		}
 		return null;
 	});
