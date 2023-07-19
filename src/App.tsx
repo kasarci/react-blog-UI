@@ -51,6 +51,10 @@ function App() {
               path="/managePosts/*"
               element={<PrivateRoute component={ManagePosts} />}
             />
+            <Route
+              path="/managePosts/page/:page"
+              element={<PrivateRoute component={ManagePosts} />}
+            />
             
             <Route path="*" element={ <NotFound /> } />
           </Routes>
