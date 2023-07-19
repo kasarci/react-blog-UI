@@ -2,11 +2,14 @@ import { Box, Button, TextField, Typography } from '@mui/material'
 import { Key, useContext, useEffect, useState } from 'react'
 import Markdown from '../components/markdown/Markdown'
 import { ICategory } from '../interfaces/ICategory'
-import { CATEGORY_GET_ALL } from '../api/api'
+import { CATEGORY_GET_ALL, POST_POST_ADD, setAuthToken } from '../api/api'
 import React from 'react'
 import CategorySelect from '../components/category/CategorySelect'
 import { IAuthContext } from '../components/shared/IAuthContext'
 import AuthContext from '../components/shared/Authcontext'
+import axios, { AxiosError } from 'axios'
+import { IAddPostResponse } from '../interfaces/responses/IAddPostResponse'
+import { IAddPostPayload } from '../interfaces/payloads/IAddPostPayload'
 
 type Props = {}
 
@@ -15,11 +18,34 @@ const CreatePost = (props: Props) => {
   const [title, setTitle] = useState('')
   const [text, setText] = useState('')
   const [selectedCategories, setSelectedCategories] = useState<ICategory[]>([]);
+  const [error, setError] = useState<string | undefined>("");
   const [loading, setLoading] = useState(true);
   const {user} = useContext(AuthContext) as IAuthContext;
   
 	const post = async () => {
 		try {
+      console.log("button pressed")
+      const addPostPayload : IAddPostPayload = {
+        title: title,
+        content: text,
+        writerId: user.Id,
+        categoryIds: selectedCategories.map(c => c.id),
+        tagIds: []
+      }
+      //@ts-ignore
+      setAuthToken(localStorage?.getItem("token"));
+      axios.post<IAddPostResponse>(POST_POST_ADD, addPostPayload)
+        .then((response => {
+          console.log(axios)
+          setError('')
+
+        }))
+        .catch((err: AxiosError<IAddPostResponse>) => {
+          console.log(err)
+          setError(err?.message);
+        })
+        
+
 			console.log(selectedCategories)
 		} catch (error) {
 			console.log(error)

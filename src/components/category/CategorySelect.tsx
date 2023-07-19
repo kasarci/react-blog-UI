@@ -51,6 +51,7 @@ const CategorySelect = (props: Props) => {
         onChange={handleChange}
         input={<OutlinedInput id="select-multiple-chip" label="Category" />}
         MenuProps={MenuProps}
+        sx={{width:{xs:350, sm:450, md:500, lg:600}}}
       >
         {categories.map((category) => (
           // @ts-ignore

@@ -2,7 +2,7 @@ import axios, { AxiosError } from "axios";
 import { createContext, useState } from "react";
 import React, { ReactNode } from "react";
 import jwt_decode from "jwt-decode";
-import { ILoginResponse } from "../../interfaces/ILoginResponse";
+import { ILoginResponse } from "../../interfaces/responses/ILoginResponse";
 import { LOGIN, REFRESH, setAuthToken } from "../../api/api";
 import { ILoginPayload } from "./IAuthContext";
 

@@ -1,7 +1,7 @@
 import jwt_decode, { JwtPayload } from "jwt-decode";
 import axios, { AxiosError } from "axios";
 import { REFRESH, setAuthToken } from "../../api/api";
-import { ILoginResponse } from "../../interfaces/ILoginResponse";
+import { ILoginResponse } from "../../interfaces/responses/ILoginResponse";
 
 let sendingRequest = false;
 
