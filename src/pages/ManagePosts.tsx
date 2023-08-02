@@ -2,9 +2,14 @@ import { Box, Button, CircularProgress, Link, Pagination, PaginationItem, Table,
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 import { IPost } from '../interfaces/IPost';
-import { POST_GET_ALL_WITH_PAGINATION, POST_GET_COUNT } from '../api/api';
+import { POST_GET_ALL_WITH_PAGINATION, POST_GET_COUNT, POST_POST_DELETE, setAuthToken } from '../api/api';
 import { ICountAndPagination } from '../interfaces/ICountAndPagination';
 import BlogComponent from '../components/blog/BlogComponent';
+import axios, { AxiosError } from 'axios';
+import { IDeletePostResponse } from '../interfaces/responses/IDeletePostResponse';
+import { IDeletePostPayload } from '../interfaces/payloads/IDeletePostPayload';
+import { ConstructionOutlined } from '@mui/icons-material';
+import { useConfirm } from 'material-ui-confirm';
 
 type Props = {}
 
@@ -42,15 +47,38 @@ const ManagePosts = (props: Props) => {
 		console.log(Number(page))
     fetchData();
   }, []);
+  
+  const confirm = useConfirm();
 
 	const handleEdit = (id:string) => {
     // Implement the edit functionality based on the blog post ID
     console.log(`Edit Blog Post with ID: ${id}`);
   };
 
-  const handleDelete = (id:string) => {
-    // Implement the delete functionality based on the blog post ID
-    console.log(`Delete Blog Post with ID: ${id}`);
+  const handleDelete = (post: IPost) => {
+
+    confirm({description: `This will permanently delete ${post.title}. Are you sure?`, title: "Delete post" })
+      .then(() => {
+        const deletePostPayload : IDeletePostPayload = {
+          postId: post.id,
+          deleteCompletely: true
+        }
+
+        //@ts-ignore
+        setAuthToken(localStorage?.getItem("token"));
+        axios.delete<IDeletePostResponse>(POST_POST_DELETE, { data: deletePostPayload })
+          .then((response => {
+            if(response.data.succeed){
+              console.log(`Deleted Blog Post with ID: ${post.id}`);
+              fetchData();
+            } else {
+              alert('Server error when deleting.');
+            }
+          })).catch((error : AxiosError<IDeletePostResponse>) => {
+            console.log(error)
+          })
+      })
+      .catch(() => console.log("Deletion cancelled."));
   };
 
   return (    
@@ -82,7 +110,7 @@ const ManagePosts = (props: Props) => {
                 <Button variant="outlined" color="primary" onClick={() => handleEdit(post.id)}>
                   Edit
                 </Button>
-                <Button variant="outlined" color="secondary" onClick={() => handleDelete(post.id)}>
+                <Button variant="outlined" color="secondary" onClick={() => handleDelete(post)}>
                   Delete
                 </Button>
               </TableCell>

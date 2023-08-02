@@ -16,6 +16,7 @@ export const POST_GET_BY_CATEGORYNAME : string = `${POST_BASE_URL}/getByCategory
 export const POST_GET_RECENTS : string = `${POST_BASE_URL}/getRecents/`;
 
 export const POST_POST_ADD : string = `${POST_BASE_URL}/Add`
+export const POST_POST_DELETE : string = `${POST_BASE_URL}/Delete`
 
 //  Users
 export const USER_ENDPOINT: string = `${API_BASE_URL}/users`;

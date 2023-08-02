@@ -18,6 +18,7 @@
     "axios": "^1.2.1",
     "github-markdown-css": "^5.2.0",
     "jwt-decode": "^3.1.2",
+    "material-ui-confirm": "^3.0.9",
     "mui-markdown": "^0.5.6",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
