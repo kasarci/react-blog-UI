@@ -1,6 +1,6 @@
 import { Box, Button, CircularProgress, Link, Pagination, PaginationItem, Table, TableBody, TableCell, TableHead, TableRow, Typography } from '@mui/material'
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { IPost } from '../interfaces/IPost';
 import { POST_GET_ALL_WITH_PAGINATION, POST_GET_COUNT, POST_POST_DELETE, setAuthToken } from '../api/api';
 import { ICountAndPagination } from '../interfaces/ICountAndPagination';
@@ -16,6 +16,7 @@ type Props = {}
 const ManagePosts = (props: Props) => {
 
   const { page } = useParams(); // get the categoryName from the route parameter
+  const navigate = useNavigate();
 
   const [posts, setPosts] = useState<IPost[]>([]);
   const [loading, setLoading] = useState(true);
@@ -52,6 +53,7 @@ const ManagePosts = (props: Props) => {
 
 	const handleEdit = (id:string) => {
     // Implement the edit functionality based on the blog post ID
+    navigate(`/EditPost/`.concat(id));
     console.log(`Edit Blog Post with ID: ${id}`);
   };
 

@@ -16,6 +16,7 @@ import PrivateRoute from "./components/routeGuard/PrivateRoute";
 import CreatePost from "./pages/CreatePost";
 import ManagePosts from "./pages/ManagePosts";
 import { ConfirmProvider } from "material-ui-confirm";
+import EditPost from "./pages/EditPost";
 
 function App() {
   return (
@@ -48,6 +49,10 @@ function App() {
               <Route
                 path="/createPost/*"
                 element={<PrivateRoute component={CreatePost} />}
+              />
+              <Route 
+              path="/EditPost/:id" 
+              element={<PrivateRoute component={EditPost} />}
               />
               <Route
                 path="/managePosts/*"
