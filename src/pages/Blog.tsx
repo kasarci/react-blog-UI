@@ -5,6 +5,7 @@ import { POST_GET_BY_ID } from '../api/api';
 import Comments from '../components/comments/Comments';
 import Tags from '../components/tags/Tags';
 import { IPost } from '../interfaces/IPost';
+import Markdown from '../components/markdown/Markdown';
 
 type Props = {}
 
@@ -57,8 +58,8 @@ const Blog: React.FC = () => {
             <hr/>
           </Container>
 
-          <Typography variant='body1' padding='3rem 0'>{post.content}</Typography>
-
+          <Markdown text={post.content} />
+          
           <Container >
             <hr/>
           </Container>
