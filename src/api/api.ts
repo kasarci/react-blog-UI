@@ -2,6 +2,7 @@ import axios from "axios";
 
 const API_BASE_URL = 'https://localhost:7026';
 const POST_BASE_URL = `${API_BASE_URL}/Post`;
+const COMMENT_BASE_URL = `${API_BASE_URL}/Comment`;
 const AUTH_BASE_URL = `${API_BASE_URL}/Auth`;
 const CATEGORY_BASE_URL = `${API_BASE_URL}/Category`;
 
@@ -18,6 +19,9 @@ export const POST_GET_RECENTS : string = `${POST_BASE_URL}/getRecents/`;
 export const POST_POST_ADD : string = `${POST_BASE_URL}/Add`
 export const POST_POST_DELETE : string = `${POST_BASE_URL}/Delete`
 export const POST_POST_UPDATE : string = `${POST_BASE_URL}/Update`
+
+//Comment
+export const COMMENT_POST_ADD : string = `${COMMENT_BASE_URL}/Add`
 
 //  Users
 export const USER_ENDPOINT: string = `${API_BASE_URL}/users`;

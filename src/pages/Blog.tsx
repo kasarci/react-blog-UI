@@ -68,8 +68,8 @@ const Blog: React.FC = () => {
             { post.tags && <Tags tags={post.tags}/>}
           </Box>
         
-
-          <Comments comments={post.comments} />
+          
+          <Comments comments={post.comments} postId={id} />
 
         </Box>
       )}

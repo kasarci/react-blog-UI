@@ -12,12 +12,15 @@ import Check from '@mui/icons-material/Check';
 import { SyntheticEvent, useState } from 'react';
 import { Button, Typography } from '@mui/material';
 import axios from 'axios';
+import { COMMENT_POST_ADD } from '../../api/api';
+import { WindowOutlined } from '@mui/icons-material';
 
-type Props = {}
+type Props = {postId: string | undefined}
 
 const AddComment = (props: Props) => {
   const [email, setEmail] = useState<string>('');
   const [comment, setComment] = useState<string>('');
+  const [userName, setUserName] = useState<string>('');
   const [submitting, setSubmitting] = useState<boolean>(false);
   const [italic, setItalic] = useState<boolean>(false);
   const [fontWeight, setFontWeight] = useState<string>('normal');
@@ -28,13 +31,16 @@ const AddComment = (props: Props) => {
     setSubmitting(true);
 
     axios
-      .post('/api/comments', {
+      .post(COMMENT_POST_ADD, {
         email: email,
-        comment: comment,
+        content: comment,
+        postId: props.postId,
+        userName: userName
       })
       .then((res) => {
         // handle successful submission
         setSubmitting(false);
+        window.location.reload();
       })
       .catch((err) => {
         // handle submission error
@@ -51,10 +57,18 @@ const AddComment = (props: Props) => {
       <Textarea 
         placeholder='Type your email.'
         maxRows={1}
+        onChange={(e) => {setEmail(e.target.value)}}
+        sx={{marginBottom: '10px'}}
+      />
+      <Textarea 
+        placeholder='Type your username.'
+        maxRows={1}
+        onChange={(e) => {setUserName(e.target.value)}}
         sx={{marginBottom: '10px'}}
       />
       <Textarea
         placeholder="Type your comment here…"
+        onChange={(e) => {setComment(e.target.value)}}
         minRows={3}
         maxRows={4}
         endDecorator={

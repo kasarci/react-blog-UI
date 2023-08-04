@@ -4,7 +4,7 @@ import { IPost } from '../../interfaces/IPost'
 import Comments from '../comments/Comments'
 
 type Props = {
-  post: IPost
+  post: IPost,
 }
 
 const PostComponent = (props: Props) => {
@@ -22,7 +22,7 @@ const PostComponent = (props: Props) => {
       </Typography>
       
       <hr/>
-      <Comments comments={props.post.comments} />
+      <Comments comments={props.post.comments} postId={props.post.id} />
     </Box>
   )
 }

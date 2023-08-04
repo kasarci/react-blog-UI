@@ -4,6 +4,7 @@ import AddComment from './AddComment'
 import Comment from './Comment'
 
 interface Props {
+  postId: string | undefined,
   comments: IComment[]
 }
 
@@ -21,7 +22,7 @@ const Comments = (props: Props) => {
           return <Comment comment={comment} />
         })}
       </Box>
-      <AddComment />
+      <AddComment postId={props.postId} />
     </Box>
   )
 }
