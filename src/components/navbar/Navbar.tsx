@@ -82,9 +82,7 @@ function Navbar({}: Props) {
             )
           }
           {isLoggedIn ? <NavbarButtonGroup options={AdminSubmenuItems}/> : null}
-          <SearchBox>
-            <InputBase placeholder='Search...' sx={{color: 'white'}} />
-          </SearchBox>
+
         </MenuBox>
         
 
@@ -92,14 +90,12 @@ function Navbar({}: Props) {
           onClick={() => {setOpen(true)}}
           sx={{color:'white', cursor: 'pointer', display:{xs:'block', sm:'block', md: 'none'}}} />
      
-        <SearchBox sx={{display: {xs:'block', sm:'block', md: 'none'}}}>
-            <InputBase placeholder='Search...' sx={{color: 'white'}} />
-          </SearchBox>
+
 
         <SocialBox >
-          { isLoggedIn ? <Button variant='text' color='inherit' onClick={handleLogout}>Logout</Button> : null}
-          <LinkedIn />
-          <GitHub />
+          { isLoggedIn ? <Button variant='text' color='inherit' onClick={handleLogout}>Logout</Button> : <Button variant='text' color='inherit' onClick={() => navigate('/login')}>Login</Button>}
+          <LinkedIn cursor='pointer' onClick={()=> {window.location.href= 'https://www.linkedin.com/in/muhammetkasarci/'}} />
+          <GitHub cursor='pointer' onClick={()=> {window.location.href= 'https://github.com/kasarci'}} />
         </SocialBox>
         
         <Menu

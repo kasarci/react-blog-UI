@@ -65,7 +65,7 @@ export const AuthContextProvider = (props: Props) => {
 				setAuthToken(token);
 				setIsLoggedIn(true);
 
-				window.location.href = '/admin'
+				window.location.href = '/'
 			})
 			.catch((err: AxiosError<ILoginResponse>) => {
 				console.log('error line 42:' + err);
